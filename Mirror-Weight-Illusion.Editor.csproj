@@ -141,6 +141,7 @@
     <None Include="Assets\SteamVR\readme.txt" />
     <None Include="Assets\VR Hands FP Arms\Shaders\Skin Shader Dynamic.shader" />
     <None Include="Assets\VR Hands FP Arms\Shaders\Skin Shader.shader" />
+    <None Include="Assets\Work\Shaders\PhantomHand.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

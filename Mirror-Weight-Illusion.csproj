@@ -182,6 +182,7 @@
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_Utils.cs" />
     <Compile Include="Assets\VR Hands FP Arms\Scripts\HandAnimatorManager.cs" />
     <Compile Include="Assets\VR Hands FP Arms\Scripts\HandAnimatorManagerVR.cs" />
+    <Compile Include="Assets\Work\Scripts\PositionRecenter.cs" />
     <Compile Include="Assets\Work\Scripts\SynchronizeRightLeft_VIVE.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +199,7 @@
     <None Include="Assets\SteamVR\readme.txt" />
     <None Include="Assets\VR Hands FP Arms\Shaders\Skin Shader Dynamic.shader" />
     <None Include="Assets\VR Hands FP Arms\Shaders\Skin Shader.shader" />
+    <None Include="Assets\Work\Shaders\PhantomHand.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
