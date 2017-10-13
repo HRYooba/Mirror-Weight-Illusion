@@ -225,8 +225,8 @@ MonoBehaviour:
     y: 0
     width: 589
     height: 645
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -250,8 +250,8 @@ MonoBehaviour:
     y: 0
     width: 939
     height: 645
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -414,9 +414,9 @@ MonoBehaviour:
     height: 624
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
+    m_SelectedIDs: 98b8fbff76280000c82a00003229000068290000
     m_LastClickedID: 0
-    m_ExpandedIDs: e4fbffff00000000
+    m_ExpandedIDs: e4fbffff000000009c2e0000a62e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -466,14 +466,14 @@ MonoBehaviour:
     width: 505
     height: 265
   m_SceneLighting: 1
-  lastFramingTime: 8379.230376633464
+  lastFramingTime: 850.7029742448093
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.7438464, y: 0.07500066, z: -0.21837181}
+    m_Target: {x: -0.092662275, y: -0.30329478, z: 0.2747618}
     speed: 2
-    m_Value: {x: 0.7438464, y: 0.07500066, z: -0.21837181}
+    m_Value: {x: -0.092662275, y: -0.30329478, z: 0.2747618}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -498,11 +498,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.12702361, y: 0.08232273, z: -0.01058004, w: -0.98842096}
     speed: 2
-    m_Value: {x: -0.12702361, y: 0.08232273, z: -0.01058004, w: -0.98842096}
+    m_Value: {x: -0.12702362, y: 0.08232274, z: -0.0105800405, w: -0.988421}
   m_Size:
-    m_Target: 1.7611828
+    m_Target: 0.941147
     speed: 2
-    m_Value: 1.7611828
+    m_Value: 0.941147
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -576,18 +576,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Work/Prefabs
+    - Assets/Work/Materals
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Work/Prefabs
+  - Assets/Work/Materals
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\ooba\Mirror-Weight-Illusion
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 24}
-    m_SelectedIDs: 0e290000
-    m_LastClickedID: 10510
+    scrollPos: {x: 0, y: 76}
+    m_SelectedIDs: f0250000
+    m_LastClickedID: 9712
     m_ExpandedIDs: 00000000ae2500004c2700006229000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -643,7 +643,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 00000000b0260000442b0000b8240000c02400005e2d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -719,8 +719,8 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 1530
-    y: 17
+    x: 1538
+    y: 100
     width: 374
     height: 910
   m_ScrollPosition: {x: 0, y: 0}
