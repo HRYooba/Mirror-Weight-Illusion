@@ -78,6 +78,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ICE_sushishop\scripts_probes\RealtimeReflection.cs" />
+    <Compile Include="Assets\ICE_sushishop\scripts_probes\RealtimeReflection1.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
@@ -183,9 +185,12 @@
     <Compile Include="Assets\VR Hands FP Arms\Scripts\HandAnimatorManager.cs" />
     <Compile Include="Assets\VR Hands FP Arms\Scripts\HandAnimatorManagerVR.cs" />
     <Compile Include="Assets\Work\Scripts\PositionRecenter.cs" />
+    <Compile Include="Assets\Work\Scripts\SelectObjScript.cs" />
     <Compile Include="Assets\Work\Scripts\SynchronizeRightLeft_VIVE.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\ICE_sushishop\Shader\Glass.shader" />
+    <None Include="Assets\ICE_sushishop\Shader\Ice(break).shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
