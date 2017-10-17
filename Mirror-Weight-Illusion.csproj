@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>5.6.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -186,7 +188,9 @@
     <Compile Include="Assets\VR Hands FP Arms\Scripts\HandAnimatorManagerVR.cs" />
     <Compile Include="Assets\Work\Scripts\PositionRecenter.cs" />
     <Compile Include="Assets\Work\Scripts\SelectObjScript.cs" />
-    <Compile Include="Assets\Work\Scripts\SynchronizeRightLeft_VIVE.cs" />
+    <Compile Include="Assets\Work\Scripts\SynchronizeRightLeft.cs" />
+    <Compile Include="Assets\Work\Scripts\SystemManager.cs" />
+    <Compile Include="Assets\Work\Scripts\SystemUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ICE_sushishop\Shader\Glass.shader" />
@@ -202,6 +206,11 @@
     <None Include="Assets\SteamVR\Resources\SteamVR_Fade.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
     <None Include="Assets\SteamVR\readme.txt" />
+    <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Cutout Wireframe.shader" />
+    <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Double-Sided Cutout Wireframe.shader" />
+    <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Double-Sided Wireframe.shader" />
+    <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Wireframe Functions.cginc" />
+    <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Wireframe.shader" />
     <None Include="Assets\VR Hands FP Arms\Shaders\Skin Shader Dynamic.shader" />
     <None Include="Assets\VR Hands FP Arms\Shaders\Skin Shader.shader" />
     <None Include="Assets\Work\Shaders\PhantomHand.shader" />

@@ -2,49 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using SystemUtil;
+
 public class SelectObjScript : MonoBehaviour
 {
     private List<GameObject> child = new List<GameObject>();
-    private int selectNum;
+    private int selectNumbuffer;
+
 
     private void Awake()
     {
-        int count = 0;
         foreach (Transform childTransform in transform)
         {
             child.Add(childTransform.gameObject);
-            count++;
-            //Debug.Log(count);
         }
     }
 
     // Use this for initialization
     void Start()
     {
-        selectNum = 0;
-        SelectObj(selectNum);
+        if (child.Count != Const.VR_OBJECT_COUNT)
+        {
+            Debug.LogError("Error: child.Count != VR_OBJECT_COUNT");
+        }
+        SelectObj(VRObject.GetNum());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (selectNumbuffer != VRObject.GetNum())
         {
-            selectNum++;
-            if (selectNum > child.Count - 1)
-            {
-                selectNum = 0;
-            }
-            SelectObj(selectNum);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            selectNum--;
-            if (selectNum < 0)
-            {
-                selectNum = child.Count - 1;
-            }
-            SelectObj(selectNum);
+            SelectObj(VRObject.GetNum());
         }
     }
 
@@ -57,6 +46,6 @@ public class SelectObjScript : MonoBehaviour
     {
         InitObj();
         child[num].SetActive(true);
-        //Debug.Log(num);
+        selectNumbuffer = num;
     }
 }
