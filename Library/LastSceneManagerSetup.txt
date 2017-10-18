@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Work/Secens/VIVE.unity
+- path: Assets/Work/Secens/MirrorWeightIllusion.unity
   isLoaded: 1
   isActive: 1

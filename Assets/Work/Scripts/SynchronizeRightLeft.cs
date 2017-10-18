@@ -8,6 +8,7 @@ public class SynchronizeRightLeft : MonoBehaviour {
     private GameObject mirrorHand;
     private GameObject originalHand;
     private Vector3 basePos; // 鏡運動させるときの基準となるポジション
+    private bool isMirror;
 
     public SynchronizeRightLeft (GameObject _HMD, GameObject _mirrorHand, GameObject _originalHand, Vector3 _basePos)
     {
@@ -15,6 +16,7 @@ public class SynchronizeRightLeft : MonoBehaviour {
         mirrorHand = _mirrorHand;
         originalHand = _originalHand;
         basePos = _basePos;
+        isMirror = true;
     }
 
 	// Use this for initialization
@@ -29,12 +31,23 @@ public class SynchronizeRightLeft : MonoBehaviour {
         Vector3 angle = rot.eulerAngles;
 
         mirrorHand.transform.position = new Vector3(basePos.x - GetPosXLengthToBasePos(), pos.y, pos.z);
-        mirrorHand.transform.eulerAngles = new Vector3(angle.x, -angle.y, -angle.z);
+        if (isMirror)
+        {
+            mirrorHand.transform.eulerAngles = new Vector3(angle.x, -angle.y, -angle.z);
+        } else
+        {
+            mirrorHand.transform.eulerAngles = new Vector3(angle.x, angle.y, angle.z);
+        }
     }
 
-    float GetPosXLengthToBasePos()
+    private float GetPosXLengthToBasePos()
     {
         Vector3 pos = originalHand.transform.position;
         return Mathf.Abs(pos.x - basePos.x);
+    }
+
+    public void ChangeMirrorMode()
+    {
+        isMirror = !isMirror;
     }
 }
