@@ -79,14 +79,14 @@
     <Reference Include="DOTween">
       <HintPath>Assets\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
-    <Reference Include="DOTween50">
-      <HintPath>Assets\Demigiant\DOTween\DOTween50.dll</HintPath>
-    </Reference>
     <Reference Include="DOTween43">
       <HintPath>Assets\Demigiant\DOTween\DOTween43.dll</HintPath>
     </Reference>
     <Reference Include="DOTween46">
       <HintPath>Assets\Demigiant\DOTween\DOTween46.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween50">
+      <HintPath>Assets\Demigiant\DOTween\DOTween50.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +94,12 @@
     <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
     <Compile Include="Assets\ICE_sushishop\scripts_probes\RealtimeReflection.cs" />
     <Compile Include="Assets\ICE_sushishop\scripts_probes\RealtimeReflection1.cs" />
+    <Compile Include="Assets\Party Pack\Scripts\CandleLight.cs" />
+    <Compile Include="Assets\Party Pack\Scripts\CycleCookiesTimer.cs" />
+    <Compile Include="Assets\Party Pack\Scripts\Rotate.cs" />
+    <Compile Include="Assets\Party Pack\Scripts\TriggerParticlesTimer.cs" />
+    <Compile Include="Assets\Party Pack\Scripts\TriggerParticlesTouch.cs" />
+    <Compile Include="Assets\Party Pack\Scripts\TriggerSoundTouch.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
@@ -211,8 +217,10 @@
     <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
     <None Include="Assets\Demigiant\DOTween\Editor\DOTweenEditor.XML" />
     <None Include="Assets\Demigiant\DOTween\readme.txt" />
+    <None Include="Assets\Hand painted bottle\readme.txt" />
     <None Include="Assets\ICE_sushishop\Shader\Glass.shader" />
     <None Include="Assets\ICE_sushishop\Shader\Ice(break).shader" />
+    <None Include="Assets\Party Pack\Sounds\Sounds License.txt" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
