@@ -152,6 +152,11 @@
     <None Include="Assets\Hand painted bottle\readme.txt" />
     <None Include="Assets\ICE_sushishop\Shader\Glass.shader" />
     <None Include="Assets\ICE_sushishop\Shader\Ice(break).shader" />
+    <None Include="Assets\MagicMirror\Demo\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
+    <None Include="Assets\MagicMirror\Prefab\MirrorShader.shader" />
+    <None Include="Assets\MagicMirror\Prefab\MirrorShaderBumpMap.shader" />
+    <None Include="Assets\MagicMirror\Prefab\MirrorShaderOld.shader" />
+    <None Include="Assets\MagicMirror\Prefab\Readme.txt" />
     <None Include="Assets\Party Pack\Sounds\Sounds License.txt" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
