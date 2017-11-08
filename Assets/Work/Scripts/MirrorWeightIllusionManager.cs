@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using SystemUtil;
 
-public class SystemManager : MonoBehaviour
+public class MirrorWeightIllusionManager : MonoBehaviour
 {
     [Header("General Settings")]
     public GameObject HMD;

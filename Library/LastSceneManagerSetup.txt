@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Work/Secens/MirrorWeightIllusion.unity
+- path: Assets/Work/Secens/MirrorBlendMove.unity
   isLoaded: 1
   isActive: 1

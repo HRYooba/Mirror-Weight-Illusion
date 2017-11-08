@@ -225,10 +225,13 @@
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_Utils.cs" />
     <Compile Include="Assets\VR Hands FP Arms\Scripts\HandAnimatorManager.cs" />
     <Compile Include="Assets\VR Hands FP Arms\Scripts\HandAnimatorManagerVR.cs" />
+    <Compile Include="Assets\Work\Scripts\BlendMove.cs" />
+    <Compile Include="Assets\Work\Scripts\MirroBlendMoveManager.cs" />
+    <Compile Include="Assets\Work\Scripts\MirrorWeightIllusionManager.cs" />
     <Compile Include="Assets\Work\Scripts\PositionRecenter.cs" />
     <Compile Include="Assets\Work\Scripts\SelectObjScript.cs" />
+    <Compile Include="Assets\Work\Scripts\SynchronizeLeftRight.cs" />
     <Compile Include="Assets\Work\Scripts\SynchronizeRightLeft.cs" />
-    <Compile Include="Assets\Work\Scripts\SystemManager.cs" />
     <Compile Include="Assets\Work\Scripts\SystemUtil.cs" />
   </ItemGroup>
   <ItemGroup>
