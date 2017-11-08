@@ -92,6 +92,15 @@
   <ItemGroup>
     <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
+    <Compile Include="Assets\HTC.UnityPlugin\StereoRendering\Examples\3. PortalDoor\Scripts\PortalEntry.cs" />
+    <Compile Include="Assets\HTC.UnityPlugin\StereoRendering\Examples\4. Callbacks\Scripts\IlluminationController.cs" />
+    <Compile Include="Assets\HTC.UnityPlugin\StereoRendering\Examples\6. RuntimeCreation\Scripts\CreateStereoRenderer.cs" />
+    <Compile Include="Assets\HTC.UnityPlugin\StereoRendering\Examples\Common\Scripts\FollowHmd.cs" />
+    <Compile Include="Assets\HTC.UnityPlugin\StereoRendering\Scripts\DeviceParamFactory\IDeviceParamFactory.cs" />
+    <Compile Include="Assets\HTC.UnityPlugin\StereoRendering\Scripts\DeviceParamFactory\SteamVRParamFactory.cs" />
+    <Compile Include="Assets\HTC.UnityPlugin\StereoRendering\Scripts\DeviceType.cs" />
+    <Compile Include="Assets\HTC.UnityPlugin\StereoRendering\Scripts\StereoRenderManager.cs" />
+    <Compile Include="Assets\HTC.UnityPlugin\StereoRendering\Scripts\StereoRenderer.cs" />
     <Compile Include="Assets\ICE_sushishop\scripts_probes\RealtimeReflection.cs" />
     <Compile Include="Assets\ICE_sushishop\scripts_probes\RealtimeReflection1.cs" />
     <Compile Include="Assets\MagicMirror\Demo\DemoScript.cs" />
@@ -229,6 +238,10 @@
     <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
     <None Include="Assets\Demigiant\DOTween\Editor\DOTweenEditor.XML" />
     <None Include="Assets\Demigiant\DOTween\readme.txt" />
+    <None Include="Assets\HTC.UnityPlugin\StereoRendering\Shader\ScreenSpaceShadows-ForCustomPerspectiveMat.shader" />
+    <None Include="Assets\HTC.UnityPlugin\StereoRendering\Shader\StereoRenderShader.shader" />
+    <None Include="Assets\HTC.UnityPlugin\StereoRendering\Shader\StereoRenderShader_5_3.shader" />
+    <None Include="Assets\HTC.UnityPlugin\StereoRendering\readme.txt" />
     <None Include="Assets\Hand painted bottle\readme.txt" />
     <None Include="Assets\ICE_sushishop\Shader\Glass.shader" />
     <None Include="Assets\ICE_sushishop\Shader\Ice(break).shader" />
