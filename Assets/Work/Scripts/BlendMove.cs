@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SystemUtil;
+using DG.Tweening;
 
-public class BlendMove : MonoBehaviour {
+public class BlendMove : MonoBehaviour
+{
 
     private GameObject originalHand;
     private GameObject mirrorHand;
@@ -15,14 +17,16 @@ public class BlendMove : MonoBehaviour {
         mirrorHand = _mirrorHand;
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         blendRate = 0.0f;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (originalHand == null || mirrorHand == null)
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (originalHand == null || mirrorHand == null)
         {
             Debug.LogError("originalHand = null && mirrorHnad = null");
             return;
@@ -41,10 +45,20 @@ public class BlendMove : MonoBehaviour {
 
         gameObject.transform.position = blendPos;
         gameObject.transform.eulerAngles = blendAngle;
-	}
+    }
 
     public void UpdateBlendRate(float rate)
     {
         blendRate = rate;
+    }
+
+    public void StartAutoBlending(float time)
+    {
+        DOTween.To( 
+            () => blendRate,
+            num => blendRate = num,
+            1.0f,
+            time
+        );
     }
 }

@@ -32,6 +32,7 @@ public class MirroBlendMoveManager : MonoBehaviour
     public float blendRateLeft;
     [Range(0, 1)]
     public float blendRateRight;
+    public float autoBlendTime = 10.0f;
 
     [Space(10), Header("VR Objects Settings"), Range(0, Const.VR_OBJECT_COUNT - 1)]
     public int selectNum = 0;
@@ -103,6 +104,7 @@ public class MirroBlendMoveManager : MonoBehaviour
             centerPanel.SetActive(!centerPanel.active);
         }
 
+        // MirrorHand and TrackerHand switch active
         if (Input.GetKeyDown("3"))
         {
             leftHand.transform.GetChild(0).gameObject.SetActive(!leftHand.transform.GetChild(0).gameObject.active);
@@ -111,11 +113,32 @@ public class MirroBlendMoveManager : MonoBehaviour
             mirrorHandRight.transform.GetChild(0).gameObject.SetActive(!mirrorHandRight.transform.GetChild(0).gameObject.active);
         }
 
-        // Average mode
+        // Blend rate set TrackerHand
         if (Input.GetKeyDown("4"))
+        {
+            blendRateLeft = 0.0f;
+            blendRateRight = 0.0f;
+        }
+
+        // Blend rate set Average 
+        if (Input.GetKeyDown("5"))
         {
             blendRateLeft = 0.5f;
             blendRateRight = 0.5f;
+        }
+
+        // Blend rate set MirrorHand
+        if (Input.GetKeyDown("6"))
+        {
+            blendRateLeft = 1.0f;
+            blendRateRight = 1.0f;
+        }
+
+        // Auto blending
+        if (Input.GetKeyDown("7"))
+        {
+            blendHandLeft.GetComponent<BlendMove>().StartAutoBlending(autoBlendTime);
+            blendHandRight.GetComponent<BlendMove>().StartAutoBlending(autoBlendTime);
         }
     }
 }
