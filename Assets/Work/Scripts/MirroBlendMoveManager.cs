@@ -47,8 +47,8 @@ public class MirroBlendMoveManager : MonoBehaviour
         synchronizeRightLeft = new SynchronizeRightLeft(HMD, mirrorHandLeft, rightHand, basePos);
         synchronizeLeftRight = new SynchronizeLeftRight(HMD, mirrorHandRight, leftHand, basePos);
 
-        blendHandLeft.GetComponent<BlendMove>().Setup(leftHand, mirrorHandRight);
-        blendHandRight.GetComponent<BlendMove>().Setup(rightHand, mirrorHandLeft);
+        blendHandLeft.GetComponent<BlendMove>().Setup(leftHand, mirrorHandLeft);
+        blendHandRight.GetComponent<BlendMove>().Setup(rightHand, mirrorHandRight);
     }
 
     // Update is called once per frame
