@@ -36,7 +36,7 @@ public class SynchronizeLeftRight : MonoBehaviour
         mirrorHand.transform.position = new Vector3(basePos.x + GetPosXLengthToBasePos(), pos.y, pos.z);
         if (isMirror)
         {
-            mirrorHand.transform.eulerAngles = new Vector3(angle.x, -angle.y, -angle.z);
+            mirrorHand.transform.eulerAngles = new Vector3(angle.x, -angle.y, -angle.z + 180.0f);
         }
         else
         {
