@@ -96,6 +96,7 @@ public class MirroBlendMoveManager : MonoBehaviour
         if (Input.GetKeyDown("1"))
         {
             synchronizeRightLeft.ChangeMirrorMode();
+            synchronizeLeftRight.ChangeMirrorMode();
         }
 
         // Show or hide centerPanel
@@ -137,8 +138,18 @@ public class MirroBlendMoveManager : MonoBehaviour
         // Auto blending
         if (Input.GetKeyDown("7"))
         {
-            blendHandLeft.GetComponent<BlendMove>().StartAutoBlending(autoBlendTime);
-            blendHandRight.GetComponent<BlendMove>().StartAutoBlending(autoBlendTime);
+            DOTween.To(
+                () => blendRateLeft,
+                num => blendRateLeft = num,
+                1.0f,
+                autoBlendTime
+            );
+            DOTween.To(
+                () => blendRateRight,
+                num => blendRateRight = num,
+                1.0f,
+                autoBlendTime
+            );
         }
     }
 }

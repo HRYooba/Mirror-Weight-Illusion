@@ -41,7 +41,11 @@ public class BlendMove : MonoBehaviour
         float inRate = 1.0f - blendRate;
 
         Vector3 blendPos = originalPos * inRate + mirrorPos * blendRate;
-        Vector3 blendAngle = originalAngle * inRate + mirrorAngle * blendRate;
+
+        float angleX = (originalAngle.x + 180.0f) * inRate + (mirrorAngle.x + 180.0f) * blendRate;
+        float angleY = (originalAngle.y + 180.0f) * inRate + (mirrorAngle.y + 180.0f) * blendRate;
+        float angleZ = (originalAngle.z + 180.0f) * inRate + (mirrorAngle.z + 180.0f) * blendRate;
+        Vector3 blendAngle = new Vector3(angleX, angleY, angleZ);
 
         gameObject.transform.position = blendPos;
         gameObject.transform.eulerAngles = blendAngle;
@@ -50,15 +54,5 @@ public class BlendMove : MonoBehaviour
     public void UpdateBlendRate(float rate)
     {
         blendRate = rate;
-    }
-
-    public void StartAutoBlending(float time)
-    {
-        DOTween.To( 
-            () => blendRate,
-            num => blendRate = num,
-            1.0f,
-            time
-        );
     }
 }
