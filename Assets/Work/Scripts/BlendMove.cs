@@ -72,7 +72,7 @@ public class BlendMove : MonoBehaviour
 
 
         Vector2 blendVector = new Vector2(blendCos, blendSin);
-        float blendAngle = Mathf.Atan2(blendSin, blendCos + 1) * 180.0f / Mathf.PI * 2.0f;
+        float blendAngle = Mathf.Atan2(blendSin, blendCos) * 180.0f / Mathf.PI;
 
 
         return blendAngle;

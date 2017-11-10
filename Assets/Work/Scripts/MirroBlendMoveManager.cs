@@ -114,30 +114,68 @@ public class MirroBlendMoveManager : MonoBehaviour
             mirrorHandRight.transform.GetChild(0).gameObject.SetActive(!mirrorHandRight.transform.GetChild(0).gameObject.active);
         }
 
-        // Blend rate set TrackerHand
+        // Show only rightHand and mirrorHandLeft
         if (Input.GetKeyDown("4"))
         {
+            Debug.Log("Mode: Mirror");
+            ResetHandActive();
+            leftHand.transform.GetChild(1).gameObject.SetActive(false);
+            mirrorHandRight.transform.GetChild(1).gameObject.SetActive(false);
+            blendHandLeft.transform.GetChild(0).gameObject.SetActive(false);
+            blendHandRight.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+        // Show only blendHands
+        if (Input.GetKeyDown("5"))
+        {
+            Debug.Log("Mode: Blend");
+            ResetHandActive();
+            leftHand.transform.GetChild(1).gameObject.SetActive(false);
+            rightHand.transform.GetChild(1).gameObject.SetActive(false);
+            mirrorHandLeft.transform.GetChild(1).gameObject.SetActive(false);
+            mirrorHandRight.transform.GetChild(1).gameObject.SetActive(false);
+        }
+
+        // Change show or hide only trackerHand
+        if (Input.GetKeyDown("6"))
+        {
+            Debug.Log("Mode: Tracker");
+            ResetHandActive();
+            mirrorHandLeft.transform.GetChild(1).gameObject.SetActive(false);
+            mirrorHandRight.transform.GetChild(1).gameObject.SetActive(false);
+            blendHandLeft.transform.GetChild(0).gameObject.SetActive(false);
+            blendHandRight.transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+
+        // Blend rate set TrackerHand
+        if (Input.GetKeyDown("7"))
+        {
+            Debug.Log("blendRate: 0");
             blendRateLeft = 0.0f;
             blendRateRight = 0.0f;
         }
 
         // Blend rate set Average 
-        if (Input.GetKeyDown("5"))
+        if (Input.GetKeyDown("8"))
         {
+            Debug.Log("blendRate: 0.5");
             blendRateLeft = 0.5f;
             blendRateRight = 0.5f;
         }
 
         // Blend rate set MirrorHand
-        if (Input.GetKeyDown("6"))
+        if (Input.GetKeyDown("9"))
         {
+            Debug.Log("blendRate: 1");
             blendRateLeft = 1.0f;
             blendRateRight = 1.0f;
         }
 
         // Auto blending
-        if (Input.GetKeyDown("7"))
+        if (Input.GetKeyDown("0"))
         {
+            Debug.Log("Auto blending Start!");
             DOTween.To(
                 () => blendRateLeft,
                 num => blendRateLeft = num,
@@ -151,5 +189,21 @@ public class MirroBlendMoveManager : MonoBehaviour
                 autoBlendTime
             );
         }
+
+        if (Input.GetKeyDown("q"))
+        {
+            Debug.Log("Mode: Rest");
+            ResetHandActive();
+        }
+    }
+
+    private void ResetHandActive ()
+    {
+        leftHand.transform.GetChild(1).gameObject.SetActive(true);
+        rightHand.transform.GetChild(1).gameObject.SetActive(true);
+        mirrorHandLeft.transform.GetChild(1).gameObject.SetActive(true);
+        mirrorHandRight.transform.GetChild(1).gameObject.SetActive(true);
+        blendHandLeft.transform.GetChild(0).gameObject.SetActive(true);
+        blendHandRight.transform.GetChild(0).gameObject.SetActive(true);
     }
 }
