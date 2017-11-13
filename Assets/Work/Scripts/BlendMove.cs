@@ -11,6 +11,8 @@ public class BlendMove : MonoBehaviour
     private GameObject mirrorHand;
     private float blendRate;
     private float inRate; // Inverse blendRate
+    private Vector3 bufferOriginalAngle;
+    private Vector3 bufferMirrorAngle;
 
     public void Setup(GameObject _originalHand, GameObject _mirrorHand)
     {
@@ -38,19 +40,23 @@ public class BlendMove : MonoBehaviour
 
         Vector3 originalPos = originalHand.transform.position;
         Vector3 mirrorPos = mirrorHand.transform.position;
+        Vector3 blendPos = originalPos * inRate + mirrorPos * blendRate;
+        gameObject.transform.position = blendPos;
 
         Vector3 originalAngle = originalHand.transform.eulerAngles;
         Vector3 mirrorAngle = mirrorHand.transform.eulerAngles;
-
-        Vector3 blendPos = originalPos * inRate + mirrorPos * blendRate;
-
-        float x = BlendAngle(originalAngle.x, mirrorAngle.x);
-        float y = BlendAngle(originalAngle.y, mirrorAngle.y);
-        float z = BlendAngle(originalAngle.z, mirrorAngle.z);
-        Vector3 blendAngle = new Vector3(x, y, z);
-
-        gameObject.transform.position = blendPos;
+        //float x = BlendAngle(originalAngle.x, mirrorAngle.x);
+        //float y = BlendAngle(originalAngle.y, mirrorAngle.y);
+        //float z = BlendAngle(originalAngle.z, mirrorAngle.z);
+        //Vector3 blendAngle = new Vector3(x, y, z);
+        //float x = ConfirmBlendAngle(originalAngle.x, mirrorAngle.x, bufferOriginalAngle.x, bufferMirrorAngle.x);
+        //float y = ConfirmBlendAngle(originalAngle.y, mirrorAngle.y, bufferOriginalAngle.y, bufferMirrorAngle.y);
+        //float z = ConfirmBlendAngle(originalAngle.z, mirrorAngle.z, bufferOriginalAngle.z, bufferMirrorAngle.z);
+        //Vector3 blendAngle = new Vector3(x, y, z);
+        Vector3 blendAngle = originalAngle * inRate + mirrorAngle * blendRate;
         gameObject.transform.eulerAngles = blendAngle;
+        bufferOriginalAngle = originalAngle;
+        bufferMirrorAngle = mirrorAngle;
     }
 
     public void UpdateBlendRate(float rate)
@@ -76,5 +82,27 @@ public class BlendMove : MonoBehaviour
 
 
         return blendAngle;
+    }
+
+    public float ConfirmBlendAngle(float angle1, float angle2, float angle1Buff, float angle2Buff)
+    {
+        if (angle1 >= 0 && angle1 <= 90 && angle1Buff >= 270 && angle1Buff <= 360 && angle2 >= 270 && angle2 <= 360)
+        {
+            angle1 = angle1 + 360;
+        }
+        if (angle2 >= 0 && angle2 < 90 && angle2Buff >= 270 && angle2Buff <= 360 && angle1 >= 270 && angle1 <= 360)
+        {
+            angle2 = angle2 + 360;
+        }
+        if (angle1 >= 270 && angle1 <= 360 && angle1Buff >= 0 && angle1Buff <= 90 && angle2 >= 0 && angle2 <= 90)
+        {
+            angle1 = -angle1;
+        }
+        if (angle2 >= 270 && angle2 <= 360 && angle2Buff >= 0 && angle2Buff <= 90 && angle1 >= 0 && angle1 <= 90)
+        {
+            angle2 = -angle2;
+        }
+
+        return angle1 * inRate + angle2 * blendRate;
     }
 }

@@ -187,7 +187,7 @@ public class MirroBlendMoveManager : MonoBehaviour
                 num => blendRateRight = num,
                 1.0f,
                 autoBlendTime
-            );
+            ).OnComplete(() => Debug.Log("Auto blending Finish!"));
         }
 
         if (Input.GetKeyDown("q"))
