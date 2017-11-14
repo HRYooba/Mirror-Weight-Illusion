@@ -41,6 +41,7 @@ public class MirroBlendMoveManager : MonoBehaviour
     private int objCount = Const.VR_OBJECT_COUNT;
 
     [Space(10), Header("GUI Settings")]
+    public GameObject GUI;
     public Slider BlendRateLSlider;
     public Slider BlendRateRSlider;
 
@@ -124,6 +125,11 @@ public class MirroBlendMoveManager : MonoBehaviour
             rightHand.transform.GetChild(0).gameObject.SetActive(!rightHand.transform.GetChild(0).gameObject.active);
             mirrorHandLeft.transform.GetChild(0).gameObject.SetActive(!mirrorHandLeft.transform.GetChild(0).gameObject.active);
             mirrorHandRight.transform.GetChild(0).gameObject.SetActive(!mirrorHandRight.transform.GetChild(0).gameObject.active);
+        }
+
+        if (Input.GetKeyDown("4"))
+        {
+            GUI.SetActive(!GUI.active);
         }
     }
 
