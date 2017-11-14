@@ -70,7 +70,7 @@ public class MirroBlendMoveManager : MonoBehaviour
         blendHandLeft.GetComponent<BlendMove>().UpdateBlendRate(blendRateLeft);
         blendHandRight.GetComponent<BlendMove>().UpdateBlendRate(blendRateRight);
 
-        Debug.Log(blendHandLeft.transform.eulerAngles + ", " + leftHand.transform.eulerAngles + ", " + mirrorHandLeft.transform.eulerAngles);
+        //Debug.Log(blendHandLeft.transform.eulerAngles + ", " + leftHand.transform.eulerAngles + ", " + mirrorHandLeft.transform.eulerAngles);
 
         // Calibration HMD position and rotation
         if (Input.GetKeyDown(KeyCode.Return))
@@ -172,6 +172,7 @@ public class MirroBlendMoveManager : MonoBehaviour
         Debug.Log("Mode: Blend&Tracker");
         ResetHandActive();
         BlendRateLSlider.value = 0.5f;
+        BlendRateRSlider.value = 0.0f;
         leftHand.transform.GetChild(1).gameObject.SetActive(false);
         blendHandRight.transform.GetChild(0).gameObject.SetActive(false);
         mirrorHandLeft.transform.GetChild(1).gameObject.SetActive(false);
