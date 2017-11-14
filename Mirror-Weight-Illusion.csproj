@@ -230,6 +230,7 @@
     <Compile Include="Assets\Work\Scripts\MirrorWeightIllusionManager.cs" />
     <Compile Include="Assets\Work\Scripts\PositionRecenter.cs" />
     <Compile Include="Assets\Work\Scripts\SelectObjScript.cs" />
+    <Compile Include="Assets\Work\Scripts\SliderValueOnText.cs" />
     <Compile Include="Assets\Work\Scripts\SynchronizeLeftRight.cs" />
     <Compile Include="Assets\Work\Scripts\SynchronizeRightLeft.cs" />
     <Compile Include="Assets\Work\Scripts\SystemUtil.cs" />

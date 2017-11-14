@@ -45,18 +45,22 @@ public class BlendMove : MonoBehaviour
 
         Vector3 originalAngle = originalHand.transform.eulerAngles;
         Vector3 mirrorAngle = mirrorHand.transform.eulerAngles;
-        //float x = BlendAngle(originalAngle.x, mirrorAngle.x);
-        //float y = BlendAngle(originalAngle.y, mirrorAngle.y);
-        //float z = BlendAngle(originalAngle.z, mirrorAngle.z);
-        //Vector3 blendAngle = new Vector3(x, y, z);
+        float x = BlendAngle(originalAngle.x, mirrorAngle.x);
+        float y = BlendAngle(originalAngle.y, mirrorAngle.y);
+        float z = BlendAngle(originalAngle.z, mirrorAngle.z);
+        Vector3 blendAngle = new Vector3(x, y, z);
         //float x = ConfirmBlendAngle(originalAngle.x, mirrorAngle.x, bufferOriginalAngle.x, bufferMirrorAngle.x);
         //float y = ConfirmBlendAngle(originalAngle.y, mirrorAngle.y, bufferOriginalAngle.y, bufferMirrorAngle.y);
         //float z = ConfirmBlendAngle(originalAngle.z, mirrorAngle.z, bufferOriginalAngle.z, bufferMirrorAngle.z);
         //Vector3 blendAngle = new Vector3(x, y, z);
-        Vector3 blendAngle = originalAngle * inRate + mirrorAngle * blendRate;
+        //Vector3 blendAngle = originalAngle * inRate + mirrorAngle * blendRate;
+        //float x = originalAngle.x * inRate + mirrorAngle.x * blendRate;
+        //float y = originalAngle.y * inRate + mirrorAngle.y * blendRate;
+        //float z = originalAngle.z * inRate + mirrorAngle.z * blendRate;
+        //Vector3 blendAngle = new Vector3(x, y, z);
         gameObject.transform.eulerAngles = blendAngle;
-        bufferOriginalAngle = originalAngle;
-        bufferMirrorAngle = mirrorAngle;
+        //bufferOriginalAngle = originalAngle;
+        //bufferMirrorAngle = mirrorAngle;
     }
 
     public void UpdateBlendRate(float rate)
