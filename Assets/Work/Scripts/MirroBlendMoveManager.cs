@@ -42,8 +42,9 @@ public class MirroBlendMoveManager : MonoBehaviour
 
     [Space(10), Header("GUI Settings")]
     public GameObject GUI;
-    public Slider BlendRateLSlider;
-    public Slider BlendRateRSlider;
+    public Slider blendRateLSlider;
+    public Slider blendRateRSlider;
+    public GraphPointScript graphPoint;
 
     // Use this for initialization
     void Start()
@@ -65,8 +66,19 @@ public class MirroBlendMoveManager : MonoBehaviour
         synchronizeRightLeft.Update();
         synchronizeLeftRight.Update();
 
-        blendRateLeft = BlendRateLSlider.value;
-        blendRateRight = BlendRateRSlider.value;
+
+        if (graphPoint.GetPush())
+        {
+            blendRateLeft = graphPoint.GetBlendRateL();
+            blendRateRight = graphPoint.GetBlendRateR();
+            blendRateLSlider.value = blendRateLeft;
+            blendRateRSlider.value = blendRateRight;
+        } else
+        {
+            blendRateLeft = blendRateLSlider.value;
+            blendRateRight = blendRateRSlider.value;
+            graphPoint.UpdateBlendRate(blendRateLeft, blendRateRight);
+        }
 
         blendHandLeft.GetComponent<BlendMove>().UpdateBlendRate(blendRateLeft);
         blendHandRight.GetComponent<BlendMove>().UpdateBlendRate(blendRateRight);
@@ -127,6 +139,7 @@ public class MirroBlendMoveManager : MonoBehaviour
             mirrorHandRight.transform.GetChild(0).gameObject.SetActive(!mirrorHandRight.transform.GetChild(0).gameObject.active);
         }
 
+        // Show or hide GUI
         if (Input.GetKeyDown("4"))
         {
             GUI.SetActive(!GUI.active);
@@ -177,8 +190,8 @@ public class MirroBlendMoveManager : MonoBehaviour
     {
         Debug.Log("Mode: Blend&Tracker");
         ResetHandActive();
-        BlendRateLSlider.value = 0.5f;
-        BlendRateRSlider.value = 0.0f;
+        blendRateLSlider.value = 0.5f;
+        blendRateRSlider.value = 0.0f;
         leftHand.transform.GetChild(1).gameObject.SetActive(false);
         blendHandRight.transform.GetChild(0).gameObject.SetActive(false);
         mirrorHandLeft.transform.GetChild(1).gameObject.SetActive(false);
@@ -195,38 +208,44 @@ public class MirroBlendMoveManager : MonoBehaviour
     {
         Debug.Log("Auto blending Start!");
         DOTween.To(
-            () => BlendRateLSlider.value,
-            num => BlendRateLSlider.value = num,
+            () => blendRateLSlider.value,
+            num => blendRateLSlider.value = num,
             1.0f,
             autoBlendTime
         );
         DOTween.To(
-            () => BlendRateRSlider.value,
-            num => BlendRateRSlider.value = num,
+            () => blendRateRSlider.value,
+            num => blendRateRSlider.value = num,
             1.0f,
             autoBlendTime
         ).OnComplete(() => Debug.Log("Auto blending Finish!"));
     }
 
+    public void StopAutoBlending()
+    {
+        Debug.Log("Auto blending Stop!");
+        DOTween.KillAll();
+    }
+
     public void BlendRateMin()
     {
         Debug.Log("blendRate: 0");
-        BlendRateLSlider.value = 0.0f;
-        BlendRateRSlider.value = 0.0f;
+        blendRateLSlider.value = 0.0f;
+        blendRateRSlider.value = 0.0f;
     }
 
     public void BlendRateAverage()
     {
         Debug.Log("blendRate: 0.5");
-        BlendRateLSlider.value = 0.5f;
-        BlendRateRSlider.value = 0.5f;
+        blendRateLSlider.value = 0.5f;
+        blendRateRSlider.value = 0.5f;
     }
 
     public void BlendRateMax()
     {
         Debug.Log("blendRate: 1");
-        BlendRateLSlider.value = 1.0f;
-        BlendRateRSlider.value = 1.0f;
+        blendRateLSlider.value = 1.0f;
+        blendRateRSlider.value = 1.0f;
     }
 
 }
