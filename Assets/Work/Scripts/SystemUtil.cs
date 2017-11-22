@@ -20,7 +20,7 @@ namespace SystemUtil
 
     static public class Const
     {
-        public const int VR_OBJECT_COUNT = 51;
+        public const int VR_OBJECT_COUNT = 52;
     }
 
 }

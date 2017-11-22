@@ -37,7 +37,6 @@ public class MirroBlendMoveManager : MonoBehaviour
 
     [Space(10), Header("VR Objects Settings"), Range(0, Const.VR_OBJECT_COUNT - 1)]
     public int selectNum = 0;
-    [SerializeField]
     private int objCount = Const.VR_OBJECT_COUNT;
 
     [Space(10), Header("GUI Settings")]
