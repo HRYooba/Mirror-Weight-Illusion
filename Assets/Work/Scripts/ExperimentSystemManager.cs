@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using SystemUtil;
+using System.IO;
 
 public class ExperimentSystemManager : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class ExperimentSystemManager : MonoBehaviour
     public AudioSource beat;
     public int BPM = 120;
     private bool isPlayingBeat;
+    private string fileName;
 
     // Use this for initialization
     void Start()
@@ -56,6 +58,8 @@ public class ExperimentSystemManager : MonoBehaviour
         blendHandRight.GetComponent<BlendMove>().Setup(rightHand, mirrorHandRight);
 
         ChangeBlendMode();
+
+        fileName = System.DateTime.Now.ToString("yyyy-MMdd-HHmm") +  ".csv";
     }
 
     // Update is called once per frame
@@ -121,7 +125,7 @@ public class ExperimentSystemManager : MonoBehaviour
 
     public void StartBeat()
     {
-		if (isPlayingBeat) return;
+        if (isPlayingBeat) return;
 
         isPlayingBeat = true;
         StartCoroutine(BeatCoroutine());
@@ -134,10 +138,26 @@ public class ExperimentSystemManager : MonoBehaviour
 
     private IEnumerator BeatCoroutine()
     {
+        int count = 0;
         while (isPlayingBeat)
         {
+            count++;
             beat.Play();
+            string writeData = count + "," + "Left" + "," + blendHandLeft.transform.position.x + "," + blendHandLeft.transform.position.y + "," + blendHandLeft.transform.position.z
+                                    + "," + "Right" + "," + blendHandRight.transform.position.x + "," + blendHandRight.transform.position.y + "," + blendHandRight.transform.position.z;
+            logSave(fileName, writeData);
             yield return new WaitForSeconds(1.0f / (BPM / 60.0f));
         }
+    }
+
+    public void logSave(string file, string txt)
+    {
+        StreamWriter sw;
+        FileInfo fi;
+        fi = new FileInfo(Application.dataPath + "/Work/Output/" + file);
+        sw = fi.AppendText();
+        sw.WriteLine(txt);
+        sw.Flush();
+        sw.Close();
     }
 }
