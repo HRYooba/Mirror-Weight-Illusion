@@ -40,7 +40,9 @@ public class ExperimentSystemManager : MonoBehaviour
     public GraphPointScript graphPoint;
 
     [Space(10), Header("Beat Settings")]
-	public AudioClip beat;
+    public AudioSource beat;
+    public int BPM = 120;
+    private bool isPlayingBeat;
 
     // Use this for initialization
     void Start()
@@ -62,8 +64,8 @@ public class ExperimentSystemManager : MonoBehaviour
         synchronizeRightLeft.Update();
         synchronizeLeftRight.Update();
 
-        blendRateLeft = blendRateLSlider.value;
-        blendRateRight = blendRateRSlider.value;
+        blendRateLeft = blendRateLSlider.value * Const.EXPERIMENT_BLENDRATE;
+        blendRateRight = blendRateRSlider.value * Const.EXPERIMENT_BLENDRATE;
         graphPoint.UpdateBlendRate(blendRateLeft, blendRateRight);
 
         blendHandLeft.GetComponent<BlendMove>().UpdateBlendRate(blendRateLeft);
@@ -82,7 +84,7 @@ public class ExperimentSystemManager : MonoBehaviour
         }
 
         // MirrorHand and TrackerHand switch active
-        if (Input.GetKeyDown("3"))
+        if (Input.GetKeyDown("1"))
         {
             leftHand.transform.GetChild(0).gameObject.SetActive(!leftHand.transform.GetChild(0).gameObject.activeSelf);
             rightHand.transform.GetChild(0).gameObject.SetActive(!rightHand.transform.GetChild(0).gameObject.activeSelf);
@@ -91,7 +93,7 @@ public class ExperimentSystemManager : MonoBehaviour
         }
 
         // Show or hide GUI
-        if (Input.GetKeyDown("4"))
+        if (Input.GetKeyDown("2"))
         {
             GUI.SetActive(!GUI.active);
         }
@@ -119,10 +121,23 @@ public class ExperimentSystemManager : MonoBehaviour
 
     public void StartBeat()
     {
+		if (isPlayingBeat) return;
 
+        isPlayingBeat = true;
+        StartCoroutine(BeatCoroutine());
     }
 
-	public void StopBeat() {
-		
-	}
+    public void StopBeat()
+    {
+        isPlayingBeat = false;
+    }
+
+    private IEnumerator BeatCoroutine()
+    {
+        while (isPlayingBeat)
+        {
+            beat.Play();
+            yield return new WaitForSeconds(1.0f / (BPM / 60.0f));
+        }
+    }
 }

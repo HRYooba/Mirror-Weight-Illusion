@@ -21,6 +21,7 @@ namespace SystemUtil
     static public class Const
     {
         public const int VR_OBJECT_COUNT = 52;
+        public const float EXPERIMENT_BLENDRATE = 0.25f;
     }
 
 }
