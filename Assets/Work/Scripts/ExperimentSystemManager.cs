@@ -39,12 +39,17 @@ public class ExperimentSystemManager : MonoBehaviour
     public Slider blendRateLSlider;
     public Slider blendRateRSlider;
     public GraphPointScript graphPoint;
+    public Text subjectNameText;
 
-    [Space(10), Header("Beat Settings")]
+    [Space(10), Header("Experiment Settings")]
+    public string subjectName;
     public AudioSource beat;
     public int BPM = 120;
+    public int moveCount = 10;
     private bool isPlayingBeat;
     private string fileName;
+    private bool isRecording;
+	
 
     // Use this for initialization
     void Start()
@@ -59,7 +64,9 @@ public class ExperimentSystemManager : MonoBehaviour
 
         ChangeBlendMode();
 
-        fileName = System.DateTime.Now.ToString("yyyy-MMdd-HHmm") +  ".csv";
+        fileName = System.DateTime.Now.ToString("yyyy-MMdd-HHmmss") + ".csv";
+		logSave(fileName, subjectName);
+		subjectNameText.text = subjectName;
     }
 
     // Update is called once per frame
@@ -127,12 +134,14 @@ public class ExperimentSystemManager : MonoBehaviour
     {
         if (isPlayingBeat) return;
 
+        Debug.Log("Start Beat");
         isPlayingBeat = true;
         StartCoroutine(BeatCoroutine());
     }
 
     public void StopBeat()
     {
+        Debug.Log("Stop Beat");
         isPlayingBeat = false;
     }
 
@@ -141,12 +150,35 @@ public class ExperimentSystemManager : MonoBehaviour
         int count = 0;
         while (isPlayingBeat)
         {
-            count++;
             beat.Play();
-            string writeData = count + "," + "Left" + "," + blendHandLeft.transform.position.x + "," + blendHandLeft.transform.position.y + "," + blendHandLeft.transform.position.z
-                                    + "," + "Right" + "," + blendHandRight.transform.position.x + "," + blendHandRight.transform.position.y + "," + blendHandRight.transform.position.z;
-            logSave(fileName, writeData);
+            if (isRecording)
+            {
+                count++;
+                string writeData = count + "," + "Left" + "," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
+                        + "," + "Right" + "," + rightHand.transform.position.x + "," + rightHand.transform.position.y + "," + rightHand.transform.position.z;
+                logSave(fileName, writeData);
+                if (count == moveCount * 2)
+                {
+                    isRecording = false;
+                    count = 0;
+                    Debug.Log("Stop Record");
+                }
+            }
             yield return new WaitForSeconds(1.0f / (BPM / 60.0f));
+        }
+    }
+
+    public void PushRecordButton()
+    {
+        isRecording = !isRecording;
+        if (isRecording)
+        {
+            Debug.Log("Start Record");
+            logSave(fileName, "blendRateL," + blendRateLeft + ",blendRateR," + blendRateRight);
+        }
+        else
+        {
+            Debug.Log("Stop Record");
         }
     }
 
