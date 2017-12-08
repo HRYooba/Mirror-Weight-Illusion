@@ -39,17 +39,17 @@ public class ExperimentSystemManager : MonoBehaviour
     public Slider blendRateLSlider;
     public Slider blendRateRSlider;
     public GraphPointScript graphPoint;
-    public Text subjectNameText;
+    public InputField subjectNameInputField;
 
     [Space(10), Header("Experiment Settings")]
-    public string subjectName;
     public AudioSource beat;
     public int BPM = 120;
     public int moveCount = 10;
+    public Text countDisplay;
     private bool isPlayingBeat;
     private string fileName;
     private bool isRecording;
-	
+
 
     // Use this for initialization
     void Start()
@@ -65,8 +65,6 @@ public class ExperimentSystemManager : MonoBehaviour
         ChangeBlendMode();
 
         fileName = System.DateTime.Now.ToString("yyyy-MMdd-HHmmss") + ".csv";
-		logSave(fileName, subjectName);
-		subjectNameText.text = subjectName;
     }
 
     // Update is called once per frame
@@ -82,18 +80,6 @@ public class ExperimentSystemManager : MonoBehaviour
         blendHandLeft.GetComponent<BlendMove>().UpdateBlendRate(blendRateLeft);
         blendHandRight.GetComponent<BlendMove>().UpdateBlendRate(blendRateRight);
 
-        // Calibration HMD position and rotation
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            positionRecenter.SetCenterPos();
-            Debug.Log("Set Pos Recenter");
-        }
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            positionRecenter.ResetPos();
-            Debug.Log("Reset Pos");
-        }
-
         // MirrorHand and TrackerHand switch active
         if (Input.GetKeyDown("1"))
         {
@@ -107,6 +93,18 @@ public class ExperimentSystemManager : MonoBehaviour
         if (Input.GetKeyDown("2"))
         {
             GUI.SetActive(!GUI.active);
+        }
+
+        // Calibration HMD position and rotation
+        if (Input.GetKeyDown("3"))
+        {
+            positionRecenter.SetCenterPos();
+            Debug.Log("Set Pos Recenter");
+        }
+        if (Input.GetKeyDown("4"))
+        {
+            positionRecenter.ResetPos();
+            Debug.Log("Reset Pos");
         }
     }
 
@@ -147,23 +145,60 @@ public class ExperimentSystemManager : MonoBehaviour
 
     private IEnumerator BeatCoroutine()
     {
-        int count = 0;
+        int firstCount = -11;
+        int count = firstCount;
+
         while (isPlayingBeat)
         {
             beat.Play();
+
+            // countDisplay
+            if (count == firstCount)
+            {
+                countDisplay.fontSize = 40;
+                countDisplay.text = "WAIT";
+            }
+            else if (count > firstCount && count < 0)
+            {
+                countDisplay.fontSize = 80;
+                countDisplay.text = Mathf.Abs(count).ToString();
+            }
+            else if (count == 0)
+            {
+                countDisplay.fontSize = 40;
+                countDisplay.text = "START";
+            }
+            else if (count <= moveCount * 2)
+            {
+                countDisplay.fontSize = 80;
+                countDisplay.text = count.ToString();
+            }
+
+            // init count
+            if (count == moveCount * 2)
+            {
+                count = firstCount;
+            }
+
+            // is recording
             if (isRecording)
             {
                 count++;
-                string writeData = count + "," + "Left" + "," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
-                        + "," + "Right" + "," + rightHand.transform.position.x + "," + rightHand.transform.position.y + "," + rightHand.transform.position.z;
-                logSave(fileName, writeData);
+                // count 1~20 wirte file.csv
+                if (count > 0)
+                {
+                    string writeData = count + ",Left," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
+                                        + ",Right," + rightHand.transform.position.x + "," + rightHand.transform.position.y + "," + rightHand.transform.position.z;
+                    logSave(fileName, writeData);
+                }
+                // record stop
                 if (count == moveCount * 2)
                 {
                     isRecording = false;
-                    count = 0;
                     Debug.Log("Stop Record");
                 }
             }
+
             yield return new WaitForSeconds(1.0f / (BPM / 60.0f));
         }
     }
@@ -180,6 +215,12 @@ public class ExperimentSystemManager : MonoBehaviour
         {
             Debug.Log("Stop Record");
         }
+    }
+
+    public void SubmitInputField()
+    {
+        string name = subjectNameInputField.text;
+        logSave(fileName, name);
     }
 
     public void logSave(string file, string txt)
