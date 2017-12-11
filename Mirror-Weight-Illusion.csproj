@@ -115,6 +115,9 @@
     <Compile Include="Assets\MagicMirror\Prefab\MirrorCameraScript.cs" />
     <Compile Include="Assets\MagicMirror\Prefab\MirrorReflectionScript.cs" />
     <Compile Include="Assets\MagicMirror\Prefab\MirrorScript.cs" />
+    <Compile Include="Assets\MetronomePro\Scripts\MetronomePro.cs" />
+    <Compile Include="Assets\MetronomePro\Scripts\MetronomePro_Player.cs" />
+    <Compile Include="Assets\MetronomePro\Scripts\ToMainThread\ToMainThread.cs" />
     <Compile Include="Assets\Party Pack\Scripts\CandleLight.cs" />
     <Compile Include="Assets\Party Pack\Scripts\CycleCookiesTimer.cs" />
     <Compile Include="Assets\Party Pack\Scripts\Rotate.cs" />
@@ -226,6 +229,7 @@
     <Compile Include="Assets\VR Hands FP Arms\Scripts\HandAnimatorManager.cs" />
     <Compile Include="Assets\VR Hands FP Arms\Scripts\HandAnimatorManagerVR.cs" />
     <Compile Include="Assets\Work\Scripts\BlendMove.cs" />
+    <Compile Include="Assets\Work\Scripts\ExperimentSystemManager.cs" />
     <Compile Include="Assets\Work\Scripts\GraphPointScript.cs" />
     <Compile Include="Assets\Work\Scripts\MirroBlendMoveManager.cs" />
     <Compile Include="Assets\Work\Scripts\MirrorWeightIllusionManager.cs" />
@@ -255,6 +259,7 @@
     <None Include="Assets\MagicMirror\Prefab\MirrorShaderBumpMap.shader" />
     <None Include="Assets\MagicMirror\Prefab\MirrorShaderOld.shader" />
     <None Include="Assets\MagicMirror\Prefab\Readme.txt" />
+    <None Include="Assets\MetronomePro\Music\Example Song and Import Tutorial.txt" />
     <None Include="Assets\Party Pack\Sounds\Sounds License.txt" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
