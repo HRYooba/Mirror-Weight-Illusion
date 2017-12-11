@@ -46,6 +46,7 @@ public class ExperimentSystemManager : MonoBehaviour
     public int BPM = 120;
     public int moveCount = 10;
     public Text countDisplay;
+    public Image countPlane;
     private bool isPlayingBeat;
     private string fileName;
     private bool isRecording;
@@ -145,7 +146,7 @@ public class ExperimentSystemManager : MonoBehaviour
 
     private IEnumerator BeatCoroutine()
     {
-        int firstCount = -11;
+        int firstCount = -6;
         int count = firstCount;
 
         while (isPlayingBeat)
@@ -157,6 +158,7 @@ public class ExperimentSystemManager : MonoBehaviour
             {
                 countDisplay.fontSize = 40;
                 countDisplay.text = "WAIT";
+                countPlane.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
             }
             else if (count > firstCount && count < 0)
             {
@@ -172,6 +174,13 @@ public class ExperimentSystemManager : MonoBehaviour
             {
                 countDisplay.fontSize = 80;
                 countDisplay.text = count.ToString();
+                if (count % 2 == 0)
+                {
+                    countPlane.color = new Color(0.0f, 0.0f, 1.0f, 0.4f);
+                } else
+                {
+                    countPlane.color = new Color(1.0f, 0.0f, 0.0f, 0.4f);
+                }
             }
 
             // init count
