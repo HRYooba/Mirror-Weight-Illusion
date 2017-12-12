@@ -111,10 +111,6 @@ public class ExperimentSystemManager : MonoBehaviour
 
     private void ResetHandActive()
     {
-        leftHand.transform.GetChild(1).gameObject.SetActive(true);
-        rightHand.transform.GetChild(1).gameObject.SetActive(true);
-        mirrorHandLeft.transform.GetChild(1).gameObject.SetActive(true);
-        mirrorHandRight.transform.GetChild(1).gameObject.SetActive(true);
         blendHandLeft.transform.GetChild(0).gameObject.SetActive(true);
         blendHandRight.transform.GetChild(0).gameObject.SetActive(true);
     }

@@ -38,7 +38,7 @@ public class PositionRecenter : MonoBehaviour
         Vector3 tempAngle = new Vector3(0, transformBuffer.eulerAngles.y - lookAngleY, 0) * -1;
         cameraRig.transform.eulerAngles = tempAngle;
 
-        Vector3 tempVector = new Vector3(transformBuffer.position.x - centerPos.x, transformBuffer.position.y - centerPos.y, transformBuffer.position.z - centerPos.z) * -1;
+        Vector3 tempVector = new Vector3(transformBuffer.position.x - centerPos.x, cameraRig.transform.position.y, transformBuffer.position.z - centerPos.z) * -1;
         cameraRig.transform.position = tempVector;
     }
 
