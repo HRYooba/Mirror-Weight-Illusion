@@ -194,9 +194,9 @@ public class ExperimentSystemManager : MonoBehaviour
             {
                 count++;
                 // count 1~20 wirte file.csv
-                if (count > 0)
+                if (count > 0 && count % 2 == 1)
                 {
-                    string writeData = count + ",Left," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
+                    string writeData = (count / 2 + 1).ToString() + ",Left," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
                                         + ",Right," + rightHand.transform.position.x + "," + rightHand.transform.position.y + "," + rightHand.transform.position.z;
                     logSave(fileName, writeData);
                 }
