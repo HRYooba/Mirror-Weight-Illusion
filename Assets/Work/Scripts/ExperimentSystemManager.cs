@@ -119,10 +119,6 @@ public class ExperimentSystemManager : MonoBehaviour
     {
         Debug.Log("Mode: Blend");
         ResetHandActive();
-        leftHand.transform.GetChild(1).gameObject.SetActive(false);
-        rightHand.transform.GetChild(1).gameObject.SetActive(false);
-        mirrorHandLeft.transform.GetChild(1).gameObject.SetActive(false);
-        mirrorHandRight.transform.GetChild(1).gameObject.SetActive(false);
     }
 
     public void StartBeat()
