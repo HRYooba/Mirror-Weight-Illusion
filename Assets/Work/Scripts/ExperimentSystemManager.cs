@@ -47,7 +47,7 @@ public class ExperimentSystemManager : MonoBehaviour
     public int moveCount = 10;
     public Text countDisplay;
     public Image countPlane;
-    public Slider updownSlider;
+    public Slider[] updownSlider;
     private bool isPlayingBeat;
     private string fileName;
     private bool isRecording;
@@ -146,6 +146,27 @@ public class ExperimentSystemManager : MonoBehaviour
         {
             beat.Play();
 
+            // is recording
+            if (isRecording)
+            {
+                moveUpdownSlider(Mathf.Abs(count) % 2, 1.0f / (BPM / 60.0f));
+                count++;
+
+                // count 1~10 wirte file.csv
+                if (count > 0)
+                {
+                    string writeData = (count).ToString() + ",Left," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
+                                        + ",Right," + rightHand.transform.position.x + "," + rightHand.transform.position.y + "," + rightHand.transform.position.z;
+                    logSave(fileName, writeData);
+                }
+                // record stop
+                if (count == moveCount * 2)
+                {
+                    isRecording = false;
+                    Debug.Log("Stop Record");
+                }
+            }
+
             // countDisplay
             if (count == firstCount)
             {
@@ -167,13 +188,6 @@ public class ExperimentSystemManager : MonoBehaviour
             {
                 countDisplay.fontSize = 80;
                 countDisplay.text = count.ToString();
-                if (count % 2 == 0)
-                {
-                    countPlane.color = new Color(0.0f, 0.0f, 1.0f, 0.4f);
-                } else
-                {
-                    countPlane.color = new Color(1.0f, 0.0f, 0.0f, 0.4f);
-                }
             }
 
             // init count
@@ -181,39 +195,21 @@ public class ExperimentSystemManager : MonoBehaviour
             {
                 count = firstCount;
             }
-
-            // is recording
-            if (isRecording)
-            {
-                moveUpdownSlider(Mathf.Abs(count) % 2, 1.0f / (BPM / 60.0f));
-                count++;
-
-                // count 1~10 wirte file.csv
-                if (count > 0 && count % 2 == 1)
-                {
-                    string writeData = (count / 2 + 1).ToString() + ",Left," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
-                                        + ",Right," + rightHand.transform.position.x + "," + rightHand.transform.position.y + "," + rightHand.transform.position.z;
-                    logSave(fileName, writeData);
-                }
-                // record stop
-                if (count == moveCount * 2)
-                {
-                    isRecording = false;
-                    Debug.Log("Stop Record");
-                }
-            }
-
+            
             yield return new WaitForSeconds(1.0f / (BPM / 60.0f));
         }
     }
 
     public void moveUpdownSlider(float value, float time)
     {
-        DOTween.To(() => updownSlider.value,
-            (x) => updownSlider.value = x,
-            value,
-            time
-        );
+        foreach (Slider slider in updownSlider)
+        {
+            DOTween.To(() => slider.value,
+             (x) => slider.value = x,
+             value,
+             time
+         );
+        }
     }
 
     public void PushRecordButton()
