@@ -47,6 +47,7 @@ public class ExperimentSystemManager : MonoBehaviour
     public int moveCount = 10;
     public Text countDisplay;
     public Image countPlane;
+    public Slider updownSlider;
     private bool isPlayingBeat;
     private string fileName;
     private bool isRecording;
@@ -184,8 +185,10 @@ public class ExperimentSystemManager : MonoBehaviour
             // is recording
             if (isRecording)
             {
+                moveUpdownSlider(Mathf.Abs(count) % 2, 1.0f / (BPM / 60.0f));
                 count++;
-                // count 1~20 wirte file.csv
+
+                // count 1~10 wirte file.csv
                 if (count > 0 && count % 2 == 1)
                 {
                     string writeData = (count / 2 + 1).ToString() + ",Left," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
@@ -202,6 +205,15 @@ public class ExperimentSystemManager : MonoBehaviour
 
             yield return new WaitForSeconds(1.0f / (BPM / 60.0f));
         }
+    }
+
+    public void moveUpdownSlider(float value, float time)
+    {
+        DOTween.To(() => updownSlider.value,
+            (x) => updownSlider.value = x,
+            value,
+            time
+        );
     }
 
     public void PushRecordButton()
