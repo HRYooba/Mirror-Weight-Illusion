@@ -47,7 +47,7 @@ public class ExperimentSystemManager : MonoBehaviour
     public int moveCount = 10;
     public Text countDisplay;
     public Image countPlane;
-    public Slider[] updownSlider;
+    public Slider updownSlider;
     private bool isPlayingBeat;
     private string fileName;
     private bool isRecording;
@@ -195,21 +195,18 @@ public class ExperimentSystemManager : MonoBehaviour
             {
                 count = firstCount;
             }
-            
+
             yield return new WaitForSeconds(1.0f / (BPM / 60.0f));
         }
     }
 
     public void moveUpdownSlider(float value, float time)
     {
-        foreach (Slider slider in updownSlider)
-        {
-            DOTween.To(() => slider.value,
-             (x) => slider.value = x,
-             value,
-             time
-         );
-        }
+        DOTween.To(() => updownSlider.value,
+         (x) => updownSlider.value = x,
+         value,
+         time
+     );
     }
 
     public void PushRecordButton()
