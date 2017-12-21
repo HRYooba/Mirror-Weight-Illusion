@@ -46,7 +46,7 @@ public class ExperimentSystemManager : MonoBehaviour
     public int BPM = 120;
     public int moveCount = 10;
     public Text countDisplay;
-    public Image countPlane;
+    public Image countPanel;
     public Slider updownSlider;
     private bool isPlayingBeat;
     private string fileName;
@@ -172,7 +172,7 @@ public class ExperimentSystemManager : MonoBehaviour
             {
                 countDisplay.fontSize = 40;
                 countDisplay.text = "WAIT";
-                countPlane.color = new Color(1.0f, 1.0f, 1.0f, 0.4f);
+                countPanel.GetComponent<CanvasGroup>().alpha = 1.0f;
             }
             else if (count > firstCount && count < 0)
             {
@@ -183,11 +183,13 @@ public class ExperimentSystemManager : MonoBehaviour
             {
                 countDisplay.fontSize = 40;
                 countDisplay.text = "START";
+                //countPanel.GetComponent<CanvasGroup>().DOFade(0, 0.5f).SetEase(Ease.InExpo);
             }
             else if (count <= moveCount * 2)
             {
                 countDisplay.fontSize = 80;
                 countDisplay.text = count.ToString();
+                countPanel.GetComponent<CanvasGroup>().alpha = 0.0f;
             }
 
             // init count
