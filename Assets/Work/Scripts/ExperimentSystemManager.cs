@@ -51,6 +51,7 @@ public class ExperimentSystemManager : MonoBehaviour
     private bool isPlayingBeat;
     private string fileName;
     private bool isRecording;
+    private bool isExperimenting;
 
 
     // Use this for initialization
@@ -81,6 +82,13 @@ public class ExperimentSystemManager : MonoBehaviour
 
         blendHandLeft.GetComponent<BlendMove>().UpdateBlendRate(blendRateLeft);
         blendHandRight.GetComponent<BlendMove>().UpdateBlendRate(blendRateRight);
+
+        if (isExperimenting)
+        {
+            string writeData = ",Left," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
+                                + ",Right," + rightHand.transform.position.x + "," + rightHand.transform.position.y + "," + rightHand.transform.position.z;
+            logSave(fileName, writeData);
+        }
 
         // MirrorHand and TrackerHand switch active
         if (Input.GetKeyDown("1"))
@@ -149,12 +157,13 @@ public class ExperimentSystemManager : MonoBehaviour
             // is recording
             if (isRecording)
             {
-                moveUpdownSlider(Mathf.Abs(count) % 2, 1.0f / (BPM / 60.0f));
+                // moveUpdownSlider(Mathf.Abs(count) % 2, 1.0f / (BPM / 60.0f));
                 count++;
 
                 // count 1~10 wirte file.csv
                 if (count > 0)
                 {
+                    isExperimenting = true;
                     string writeData = (count).ToString() + ",Left," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
                                         + ",Right," + rightHand.transform.position.x + "," + rightHand.transform.position.y + "," + rightHand.transform.position.z;
                     logSave(fileName, writeData);
@@ -162,8 +171,8 @@ public class ExperimentSystemManager : MonoBehaviour
                 // record stop
                 if (count == moveCount * 2)
                 {
+                    isExperimenting = false;
                     isRecording = false;
-                    Debug.Log("Stop Record");
                 }
             }
 
