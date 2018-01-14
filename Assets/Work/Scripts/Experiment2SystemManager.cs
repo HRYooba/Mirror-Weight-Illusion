@@ -85,6 +85,7 @@ public class Experiment2SystemManager : MonoBehaviour
         blendHandLeft.GetComponent<BlendMove>().UpdateBlendRate(blendRateLeft);
         blendHandRight.GetComponent<BlendMove>().UpdateBlendRate(blendRateRight);
 
+
         if (isExperimenting)
         {
             if (leftHand.transform.position.y >= 1.0f || rightHand.transform.position.y >= 1.0f)
