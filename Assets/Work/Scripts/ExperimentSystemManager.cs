@@ -149,7 +149,7 @@ public class ExperimentSystemManager : MonoBehaviour
             // is recording
             if (isRecording)
             {
-                moveUpdownSlider(Mathf.Abs(count) % 2, 1.0f / (BPM / 60.0f));
+                //moveUpdownSlider(Mathf.Abs(count) % 2, 1.0f / (BPM / 60.0f));
                 count++;
 
                 // count 1~10 wirte file.csv
