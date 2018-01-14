@@ -118,7 +118,6 @@ public class Experiment2SystemManager : MonoBehaviour
         else
         {
             moveCount = 0;
-            writeState = state.WAIT;
         }
 
         // MirrorHand and TrackerHand switch active
