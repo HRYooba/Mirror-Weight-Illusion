@@ -48,7 +48,7 @@ public class Experiment2SystemManager : MonoBehaviour
     public Text countDisplay;
     public Image countPanel;
     private bool isPlayingBeat;
-    private string[] fileNames = new string[3];
+    private string fileName;
     private bool isRecording;
     private bool isExperimenting;
     private enum state { CAN, DONE, WAIT };
@@ -68,10 +68,8 @@ public class Experiment2SystemManager : MonoBehaviour
 
         ChangeBlendMode();
 
-        for (int i = 0; i < 3; i++)
-        {
-            fileNames[i] = System.DateTime.Now.ToString("yyyy-MMdd-HHmmss") + "-" + i.ToString() + ".csv";
-        }
+        fileName = System.DateTime.Now.ToString("yyyy-MMdd-HHmmss") + ".csv";
+
     }
 
     // Update is called once per frame
@@ -89,9 +87,6 @@ public class Experiment2SystemManager : MonoBehaviour
 
         if (isExperimenting)
         {
-            string writeData = moveCount.ToString() + ",Left," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
-+ ",Right," + rightHand.transform.position.x + "," + rightHand.transform.position.y + "," + rightHand.transform.position.z;
-            logSave(fileNames[1], writeData);
             if (leftHand.transform.position.y >= 1.0f || rightHand.transform.position.y >= 1.0f)
             {
                 if (writeState == state.WAIT)
@@ -104,10 +99,11 @@ public class Experiment2SystemManager : MonoBehaviour
                 moveCount++;
                 string writeData2 = moveCount.ToString() + ",Left," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
         + ",Right," + rightHand.transform.position.x + "," + rightHand.transform.position.y + "," + rightHand.transform.position.z;
-                logSave(fileNames[2], writeData2);
+                logSave(fileName, writeData2);
                 writeState = state.DONE;
+                Debug.Log(moveCount);
             }
-            if (leftHand.transform.position.y <= 0.9f && rightHand.transform.position.y <= 0.9f)
+            if (leftHand.transform.position.y <= 0.8f && rightHand.transform.position.y <= 0.8f)
             {
                 if (writeState == state.DONE)
                 {
@@ -118,6 +114,7 @@ public class Experiment2SystemManager : MonoBehaviour
         else
         {
             moveCount = 0;
+            writeState = state.WAIT;
         }
 
         // MirrorHand and TrackerHand switch active
@@ -194,9 +191,6 @@ public class Experiment2SystemManager : MonoBehaviour
                 if (count > 0)
                 {
                     isExperimenting = true;
-                    string writeData = (count).ToString() + ",Left," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
-                                        + ",Right," + rightHand.transform.position.x + "," + rightHand.transform.position.y + "," + rightHand.transform.position.z;
-                    logSave(fileNames[0], writeData);
                 }
                 // record stop
                 if (count == moveCountMax * 2)
@@ -248,10 +242,8 @@ public class Experiment2SystemManager : MonoBehaviour
         if (isRecording)
         {
             Debug.Log("Start Record");
-            for (int i = 0; i < 3; i++)
-            {
-                logSave(fileNames[i], "blendRateL," + blendRateLeft + ",blendRateR," + blendRateRight);
-            }
+            logSave(fileName, "blendRateL," + blendRateLeft + ",blendRateR," + blendRateRight);
+
         }
         else
         {
@@ -262,10 +254,9 @@ public class Experiment2SystemManager : MonoBehaviour
     public void SubmitInputField()
     {
         string name = subjectNameInputField.text;
-        for (int i = 0; i < 3; i++)
-        {
-            logSave(fileNames[i], name);
-        }
+
+        logSave(fileName, name);
+
     }
 
     public void logSave(string file, string txt)
