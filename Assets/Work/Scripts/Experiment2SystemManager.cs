@@ -212,7 +212,7 @@ public class Experiment2SystemManager : MonoBehaviour
         Debug.Log("out putting csv");
         for (int i = 0; i < leftData.Count; i++)
         {
-            string writeData = "Left," + leftData[i].x + "," + leftData[i].y + "," + leftData[i].z
+            string writeData = ",Left," + leftData[i].x + "," + leftData[i].y + "," + leftData[i].z
                                         + ",Right," + rightData[i].x + "," + rightData[i].y + "," + rightData[i].z;
             logSave(fileName, writeData);
         }
