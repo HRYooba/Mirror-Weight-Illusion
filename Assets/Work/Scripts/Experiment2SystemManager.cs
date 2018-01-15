@@ -38,7 +38,6 @@ public class Experiment2SystemManager : MonoBehaviour
     public GameObject GUI;
     public Slider blendRateLSlider;
     public Slider blendRateRSlider;
-    public GraphPointScript graphPoint;
     public InputField subjectNameInputField;
 
     [Space(10), Header("Experiment Settings")]
@@ -51,9 +50,8 @@ public class Experiment2SystemManager : MonoBehaviour
     private string fileName;
     private bool isRecording;
     private bool isExperimenting;
-    private enum state { CAN, DONE, WAIT };
-    private state writeState = state.WAIT;
-    private int moveCount;
+    private List<Vector3> leftData = new List<Vector3>();
+    private List<Vector3> rightData = new List<Vector3>();
 
     // Use this for initialization
     void Start()
@@ -80,7 +78,6 @@ public class Experiment2SystemManager : MonoBehaviour
 
         blendRateLeft = blendRateLSlider.value * Const.EXPERIMENT_BLENDRATE;
         blendRateRight = blendRateRSlider.value * Const.EXPERIMENT_BLENDRATE;
-        graphPoint.UpdateBlendRate(blendRateLeft, blendRateRight);
 
         blendHandLeft.GetComponent<BlendMove>().UpdateBlendRate(blendRateLeft);
         blendHandRight.GetComponent<BlendMove>().UpdateBlendRate(blendRateRight);
@@ -88,34 +85,8 @@ public class Experiment2SystemManager : MonoBehaviour
 
         if (isExperimenting)
         {
-            if (leftHand.transform.position.y >= 1.0f || rightHand.transform.position.y >= 1.0f)
-            {
-                if (writeState == state.WAIT)
-                {
-                    writeState = state.CAN;
-                }
-            }
-            if (writeState == state.CAN)
-            {
-                moveCount++;
-                string writeData2 = moveCount.ToString() + ",Left," + leftHand.transform.position.x + "," + leftHand.transform.position.y + "," + leftHand.transform.position.z
-        + ",Right," + rightHand.transform.position.x + "," + rightHand.transform.position.y + "," + rightHand.transform.position.z;
-                logSave(fileName, writeData2);
-                writeState = state.DONE;
-                Debug.Log(moveCount);
-            }
-            if (leftHand.transform.position.y <= 0.8f && rightHand.transform.position.y <= 0.8f)
-            {
-                if (writeState == state.DONE)
-                {
-                    writeState = state.WAIT;
-                }
-            }
-        }
-        else
-        {
-            moveCount = 0;
-            writeState = state.WAIT;
+            leftData.Add(leftHand.transform.position);
+            rightData.Add(rightHand.transform.position);
         }
 
         // MirrorHand and TrackerHand switch active
@@ -185,7 +156,6 @@ public class Experiment2SystemManager : MonoBehaviour
             // is recording
             if (isRecording)
             {
-                // moveUpdownSlider(Mathf.Abs(count) % 2, 1.0f / (BPM / 60.0f));
                 count++;
 
                 // count 1~10 wirte file.csv
@@ -198,7 +168,7 @@ public class Experiment2SystemManager : MonoBehaviour
                 {
                     isExperimenting = false;
                     isRecording = false;
-                    Debug.Log("Stop Record");
+                    Debug.Log("Stop Experiment");
                 }
             }
 
@@ -239,16 +209,32 @@ public class Experiment2SystemManager : MonoBehaviour
 
     public void PushRecordButton()
     {
+        Debug.Log("out putting csv");
+        for (int i = 0; i < leftData.Count; i++)
+        {
+            string writeData = "Left," + leftData[i].x + "," + leftData[i].y + "," + leftData[i].z
+                                        + ",Right," + rightData[i].x + "," + rightData[i].y + "," + rightData[i].z;
+            logSave(fileName, writeData);
+        }
+        rightData.Clear();
+        rightData.TrimExcess();
+        leftData.Clear();
+        leftData.TrimExcess();
+        Debug.Log("Finish out put csv");
+    }
+
+    public void PushExperimentButton()
+    {
         isRecording = !isRecording;
         if (isRecording)
         {
-            Debug.Log("Start Record");
+            Debug.Log("Start Experiment");
             logSave(fileName, "blendRateL," + blendRateLeft + ",blendRateR," + blendRateRight);
 
         }
         else
         {
-            Debug.Log("Stop Record");
+            Debug.Log("Stop Experiment");
         }
     }
 
